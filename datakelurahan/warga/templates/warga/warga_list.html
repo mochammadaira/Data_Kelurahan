@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daftar Warga</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between mb-3">
+    <h2>Daftar Warga</h2>
+
+    <div>
+        <a href="{% url 'pengaduan_list' %}" class="btn btn-warning me-2">
+            Lihat Pengaduan
+        </a>
+
+        <a href="{% url 'warga-tambah' %}" class="btn btn-primary">
+            + Tambah Warga Baru
+        </a>
+    </div>
+</div>
+
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            {% if warga_list %}
+            <ul class="list-group">
+                {% for warga in warga_list %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ warga.nama_lengkap }}</strong><br>
+                            <span class="text-muted">NIK: {{ warga.nik }}</span>
+                        </div>
+                        
+                        <a href="{% url 'warga-detail' warga.pk %}" class="btn btn-outline-primary btn-sm">
+                            Detail
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p class="text-muted">Belum ada data warga.</p>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
